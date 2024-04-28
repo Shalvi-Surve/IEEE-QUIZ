@@ -1,0 +1,75 @@
+"
+1. initState(): 
+
+/This method is called when the StatefulWidget is inserted into the widget tree for the first time. 
+/It is used for initialization tasks that need to be performed only once. 
+
+Example Code: In this code, _message is initialized to 'Hello, World!' inside the initState() method. 
+              This value will persist throughout the lifetime of the widget and won't change unless the widget is rebuilt.
+"
+"
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  
+String _message = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _message = 'Hello, World!';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(_message);
+  }
+}
+"
+
+
+"
+2. setState():
+This method is used to update the state of a StatefulWidget. 
+When you call setState(), Flutter rebuilds the widget, updating any properties that have changed. 
+
+Example Code: In this example, _message is initially an empty string. 
+              When the button is pressed, _updateMessage() is called, which updates _message to 'Hello, Flutter!' by calling setState(). 
+              As a result, the widget is rebuilt, and the updated message is displayed.
+"
+"
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  String _message = '';
+
+  void _updateMessage() {
+    setState(() {
+      _message = 'Hello, Flutter!';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(_message),
+        RaisedButton(
+          onPressed: _updateMessage,
+          child: Text('Update Message'),
+        ),
+      ],
+    );
+  }
+}
+"
+
+
+//In summary, initState() is used for one-time initialization tasks, typically performed when the widget is first inserted into the tree. 
+//On the other hand, setState() is used to update the state of the widget and trigger a rebuild of the widget tree with the updated state.
